@@ -6,5 +6,5 @@ colorSensor = ColorSensor()
 colorSensor.mode = 'COL-REFLECT'
 
 while True:
-    val = colorSensor.value()
+    val = colorSensor.reflected_light_intensity()
     print(val)
