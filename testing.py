@@ -2,13 +2,9 @@
 from ev3dev.ev3 import *
 from time import sleep
 
-rightLight = LightSensor()
+rightLight = LightSensor('in1')
 rightLight.mode = 'REFLECT'
-
-leftLight = LightSensor()
-leftLight.mode = 'REFLECT'
 
 while True:
     right = rightLight.reflected_light_intensity
-    left = leftLight.reflected_light_intensity
-    print("right", right, "left", left)
+    print("right", right)
