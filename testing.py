@@ -10,20 +10,25 @@ leftMotor = LargeMotor('outA')
 while True:
     right = rightLight.reflected_light_intensity
     print("right", right) 
-        # Black
-    if right < 40:
-        # Turn Left
-        rightMotor.run_forever(speed_sp=-150)
-        leftMotor.run_forever(speed_sp=150)
 
-    elif right > 50:
-        # Turn Right
-        rightMotor.run_forever(speed_sp=0)
-        leftMotor.run_forever(speed_sp=-160)
-    else:
-        # Go Forward with left bias
-        rightMotor.run_forever(speed_sp=-175)
-        leftMotor.run_forever(speed_sp=80)
+
+
+
+
+    #     # Black
+    # if right < 40:
+    #     # Turn Left
+    #     rightMotor.run_forever(speed_sp=-150)
+    #     leftMotor.run_forever(speed_sp=150)
+
+    # elif right > 50:
+    #     # Turn Right
+    #     rightMotor.run_forever(speed_sp=0)
+    #     leftMotor.run_forever(speed_sp=-160)
+    # else:
+    #     # Go Forward with left bias
+    #     rightMotor.run_forever(speed_sp=-175)
+    #     leftMotor.run_forever(speed_sp=80)
     
     # # Black
     # if right < 40:
