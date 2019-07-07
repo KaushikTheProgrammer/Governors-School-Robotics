@@ -22,4 +22,4 @@ while True:
     else:
         # Go Forward
         rightMotor.run_forever(speed_sp=-200)
-        leftMotor.run_forever(speed_sp=-200)
+        leftMotor.run_forever(speed_sp=200)
