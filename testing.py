@@ -1,5 +1,8 @@
 #!/usr/bin/env python3 -u
 from ev3dev.ev3 import *
+from simple_pid import PID
+
+pid = PID(1, 0.1, 0.05, setpoint=1)
 
 rightLight = LightSensor('in2')
 rightLight.mode = 'REFLECT'
