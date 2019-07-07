@@ -22,5 +22,5 @@ while True:
         leftMotor.run_forever(speed_sp=-160)
     else:
         # Go Forward with left bias
-        rightMotor.run_forever(speed_sp=-180)
-        leftMotor.run_forever(speed_sp=120)
+        rightMotor.run_forever(speed_sp=-200)
+        leftMotor.run_forever(speed_sp=100)
