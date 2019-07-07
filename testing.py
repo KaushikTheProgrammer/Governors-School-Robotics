@@ -11,7 +11,7 @@ while True:
     right = rightLight.reflected_light_intensity
     print("right", right) 
     # # Black
-    # if right < 30:
+    # if right < 40:
     #     # Turn Left
     #     rightMotor.run_forever(speed_sp=-350)
     #     leftMotor.run_forever(speed_sp=40)
