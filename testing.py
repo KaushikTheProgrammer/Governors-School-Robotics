@@ -14,7 +14,7 @@ while True:
     if right < 30:
         # Turn Left
         rightMotor.run_forever(speed_sp=-190)
-        leftMotor.run_forever(speed_sp=20)
+        leftMotor.run_forever(speed_sp=40)
 
     elif right > 50:
         # Turn Right
