@@ -13,14 +13,14 @@ while True:
     # Black
     if right < 30:
         # Turn Left
-        rightMotor.run_forever(speed_sp=-160)
-        leftMotor.run_forever(speed_sp=0)
+        rightMotor.run_forever(speed_sp=-190)
+        leftMotor.run_forever(speed_sp=20)
 
     elif right > 50:
         # Turn Right
         rightMotor.run_forever(speed_sp=0)
         leftMotor.run_forever(speed_sp=-160)
     else:
-        # Go Forward
+        # Go Forward with left bias
         rightMotor.run_forever(speed_sp=-180)
         leftMotor.run_forever(speed_sp=120)
