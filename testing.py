@@ -2,9 +2,9 @@
 from ev3dev.ev3 import *
 from time import sleep
 
-colorSensor = ColorSensor()
-colorSensor.mode = 'COL-REFLECT'
+lightSensor = LightSensor()
+lightSensor.mode = 'REFLECT'
 
 while True:
-    val = colorSensor.reflected_light_intensity
+    val = lightSensor.reflected_light_intensity
     print(val)
