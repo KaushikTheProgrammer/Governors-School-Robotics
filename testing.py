@@ -9,6 +9,7 @@ leftMotor = LargeMotor('outA')
 
 while True:
     right = rightLight.reflected_light_intensity
+    print("right", right)
     # Black
     if right < 30:
         # Turn Left
@@ -21,5 +22,5 @@ while True:
         leftMotor.run_forever(speed_sp=-100)
     else:
         # Go Forward
-        rightMotor.run_forever(speed_sp=-200)
+        rightMotor.run_forever(speed_sp=200)
         leftMotor.run_forever(speed_sp=200)
