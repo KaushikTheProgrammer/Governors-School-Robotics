@@ -1,6 +1,5 @@
 #!/usr/bin/env python3 -u
 from ev3dev.ev3 import *
-from time import sleep
 
 rightLight = LightSensor('in1')
 rightLight.mode = 'REFLECT'
@@ -13,15 +12,14 @@ while True:
     # Black
     if right < 30:
         # Turn Left
-        rightMotor.run_forever(speed_sp=50)
+        rightMotor.run_forever(speed_sp=-100)
         leftMotor.run_forever(speed_sp=0)
 
     elif right > 50:
         # Turn Right
-        # Turn Left
         rightMotor.run_forever(speed_sp=0)
-        leftMotor.run_forever(speed_sp=50)
+        leftMotor.run_forever(speed_sp=-100)
     else:
         # Go Forward
-        rightMotor.run_forever(speed_sp=100)
-        leftMotor.run_forever(speed_sp=100)
+        rightMotor.run_forever(speed_sp=-200)
+        leftMotor.run_forever(speed_sp=--200)
