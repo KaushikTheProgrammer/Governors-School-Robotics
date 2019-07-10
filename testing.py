@@ -1,8 +1,8 @@
 #!/usr/bin/env python3 -u
 from ev3dev.ev3 import *
 
-rightLight = LightSensor('in2')
-rightLight.mode = 'REFLECT'
+centerLight = LightSensor('in2')
+centerLight.mode = 'REFLECT'
 
 rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
@@ -12,7 +12,7 @@ setpoint = 35
 kP = 2.0
 
 while True:
-    lightOutput = rightLight.reflected_light_intensity
+    lightOutput = centerLight.reflected_light_intensity
     print(lightOutput)
     
     error = lightOutput - setpoint
