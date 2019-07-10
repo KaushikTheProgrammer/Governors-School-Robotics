@@ -1,10 +1,5 @@
 #!/usr/bin/env python3 -u
 from ev3dev.ev3 import *
-from simple_pid import PID
-
-pid = PID(1, 0.1, 0.05, setpoint=45)
-
-pid.output_limits = (-400, 0)
 
 rightLight = LightSensor('in2')
 rightLight.mode = 'REFLECT'
@@ -13,12 +8,16 @@ rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
 
 base_speed = 200
+setpoint = 35
+kP = 2.0
 
 while True:
     lightOutput = rightLight.reflected_light_intensity
-    pidOutput = pid(lightOutput)
+    
+    error = lightOutput - setpoint
 
-    rightMotor.run_forever(speed_sp=pidOutput + base_speed)
+    rightMotor.run_forever(speed_sp=base_speed + error * kP)
+    leftMotor.run_forever(speed_sp=base_speed + error * kP)
     
 
 
