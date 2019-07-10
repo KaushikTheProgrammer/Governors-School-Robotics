@@ -13,6 +13,7 @@ kP = 2.0
 
 while True:
     lightOutput = rightLight.reflected_light_intensity
+    print(lightOutput)
     
     error = lightOutput - setpoint
 
