@@ -1,7 +1,7 @@
 #!/usr/bin/env python3 -u
 from ev3dev.ev3 import *
 
-centerLight = LightSensor('in3')
+centerLight = LightSensor('in2')
 centerLight.mode = 'REFLECT'
 
 rightMotor = LargeMotor('outD')
