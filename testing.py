@@ -9,18 +9,18 @@ leftMotor = LargeMotor('outA')
 
 base_speed = 150
 setpoint = 28
-kP = 10
+kP = 4
 
 while True:
     lightOutput = centerLight.reflected_light_intensity
     
     error = lightOutput - setpoint
-    motorVal = base_speed + error * kP
+    motorVal = base_speed + (error * kP)
 
     print("error", error, "motorVal", motorVal)
 
-    rightMotor.run_forever(speed_sp=motorVal)
-    leftMotor.run_forever(speed_sp=motorVal)
+    # rightMotor.run_forever(speed_sp=motorVal)
+    # leftMotor.run_forever(speed_sp=motorVal)
     
 
 
