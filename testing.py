@@ -8,7 +8,7 @@ rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
 
 base_speed = 150
-setpoint = 28
+setpoint = 13
 kP = 4
 
 while True:
