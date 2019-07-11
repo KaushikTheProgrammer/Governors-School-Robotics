@@ -16,8 +16,8 @@ while True:
     
     error = lightOutput - setpoint
 
-    rightMotor.run_forever(speed_sp=base_speed + error * kP)
-    leftMotor.run_forever(speed_sp=base_speed + error * kP)
+    rightMotor.run_forever(speed_sp=-1 * (base_speed + error * kP))
+    leftMotor.run_forever(speed_sp=-1 * (base_speed + error * kP))
     
 
 
