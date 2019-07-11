@@ -18,7 +18,7 @@ while True:
     rightMotorVal = base_speed + (error * kP)
     leftMotorVal = base_speed - (error * kP)
 
-    print("error", error, "rightMotor", rightMotorVal, "leftMotor", leftMotorVal)
+    print("light", lightOutput, "error", error, "rightMotor", rightMotorVal, "leftMotor", leftMotorVal)
 
     # rightMotor.run_forever(speed_sp=motorVal)
     # leftMotor.run_forever(speed_sp=motorVal)
