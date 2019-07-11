@@ -8,8 +8,10 @@ rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
 
 base_speed = 150
-setpoint = 28
-kP = 4
+setpoint = 13
+
+
+kP = 13
 
 while True:
     lightOutput = centerLight.reflected_light_intensity
