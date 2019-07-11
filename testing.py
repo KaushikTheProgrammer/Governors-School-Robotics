@@ -2,7 +2,7 @@
 from ev3dev.ev3 import *
 
 centerLight = ColorSensor('in4')
-centerLight.MODE_COL_REFLECT = 'COL-REFLECT'
+centerLight.mode = 'COL-REFLECT'
 
 rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
