@@ -4,25 +4,32 @@ from ev3dev.ev3 import *
 centerLight = ColorSensor('in4')
 centerLight.mode = 'COL-REFLECT'
 
+detector = ColorSensor('in1')
+detector.mode = 'COL-COLOR'
+
+# ultrasonicSensor = UltrasonicSensor('in3')
+# ultrasonicSensor.mode = 'US-DIST-CM'
+
 rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
 
-base_speed = 175
+base_speed = 120
 setpoint = 18
 
-kP = 20
+kP = 23
 
 while True:
     lightOutput = centerLight.reflected_light_intensity
+    colorVal = detector.color
+
+    print(colorVal)
     
     error = lightOutput - setpoint
     rightMotorVal = base_speed + (error * kP)
     leftMotorVal = base_speed - (error * kP)
 
-    print("light", lightOutput, "error", error, "leftMotor", leftMotorVal, "rightMotor", rightMotorVal)
-
-    rightMotor.run_forever(speed_sp=-rightMotorVal)
-    leftMotor.run_forever(speed_sp=-leftMotorVal)
+    # rightMotor.run_forever(speed_sp=-rightMotorVal)
+    # leftMotor.run_forever(speed_sp=-leftMotorVal)
     
 
 
