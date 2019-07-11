@@ -11,7 +11,7 @@ base_speed = 250
 setpoint = 13
 
 
-kP = 17
+kP = 13
 
 while True:
     lightOutput = centerLight.reflected_light_intensity
