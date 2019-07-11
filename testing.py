@@ -13,12 +13,11 @@ kP = 2.0
 
 while True:
     lightOutput = centerLight.reflected_light_intensity
-    print(lightOutput)
     
     error = lightOutput - setpoint
 
-    # rightMotor.run_forever(speed_sp=base_speed + error * kP)
-    # leftMotor.run_forever(speed_sp=base_speed + error * kP)
+    rightMotor.run_forever(speed_sp=base_speed + error * kP)
+    leftMotor.run_forever(speed_sp=base_speed + error * kP)
     
 
 
