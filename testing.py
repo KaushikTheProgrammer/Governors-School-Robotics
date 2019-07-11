@@ -7,7 +7,7 @@ centerLight.mode = 'COL-REFLECT'
 rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
 
-base_speed = 250
+base_speed = 200
 setpoint = 13
 
 
