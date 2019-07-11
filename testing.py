@@ -1,7 +1,7 @@
 #!/usr/bin/env python3 -u
 from ev3dev.ev3 import *
 
-centerLight = LightSensor('in2')
+centerLight = ColorSensor('in4')
 centerLight.mode = 'REFLECT'
 
 rightMotor = LargeMotor('outD')
@@ -17,8 +17,8 @@ while True:
     
     error = lightOutput - setpoint
 
-    rightMotor.run_forever(speed_sp=base_speed + error * kP)
-    leftMotor.run_forever(speed_sp=base_speed + error * kP)
+    # rightMotor.run_forever(speed_sp=base_speed + error * kP)
+    # leftMotor.run_forever(speed_sp=base_speed + error * kP)
     
 
 
