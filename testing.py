@@ -20,8 +20,8 @@ while True:
 
     print("light", lightOutput, "error", error, "leftMotor", leftMotorVal, "rightMotor", rightMotorVal)
 
-    # rightMotor.run_forever(speed_sp=motorVal)
-    # leftMotor.run_forever(speed_sp=motorVal)
+    rightMotor.run_forever(speed_sp=rightMotorVal)
+    leftMotor.run_forever(speed_sp=leftMotorVal)
     
 
 
