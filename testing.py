@@ -7,7 +7,7 @@ centerLight.mode = 'COL-REFLECT'
 rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
 
-base_speed = 200
+base_speed = 150
 setpoint = 28
 kP = 10
 
@@ -17,7 +17,7 @@ while True:
     error = lightOutput - setpoint
     motorVal = base_speed + error * kP
 
-    print(motorVal)
+    print("error", error, "motorVal", motorVal)
 
     rightMotor.run_forever(speed_sp=motorVal)
     leftMotor.run_forever(speed_sp=motorVal)
