@@ -1,10 +1,11 @@
 #!/usr/bin/env python3 -u
 from ev3dev.ev3 import *
+import time
 
-centerLight = ColorSensor('in4')
-centerLight.mode = 'COL-REFLECT'
+centerLight = LightSensor('in4')
+#centerLight.mode = 'COL-REFLECT'
 
-detector = ColorSensor('in1')
+detector = ColorSensor()
 detector.mode = 'COL-COLOR'
 
 # ultrasonicSensor = UltrasonicSensor('in3')
@@ -14,56 +15,35 @@ rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
 
 base_speed = 120
-setpoint = 18
+setpoint = 40
 
 kP = 23
+
+prevColor = 6
+numGreen = 0
+detectedTime = 0
+threshold = 10
 
 while True:
     lightOutput = centerLight.reflected_light_intensity
     colorVal = detector.color
-
-    print(colorVal)
+    currentTime = time.time()
+    
     
     error = lightOutput - setpoint
     rightMotorVal = base_speed + (error * kP)
     leftMotorVal = base_speed - (error * kP)
 
-    # rightMotor.run_forever(speed_sp=-rightMotorVal)
-    # leftMotor.run_forever(speed_sp=-leftMotorVal)
+    if prevColor == colorVal and (colorVal == 3 or colorVal == 4) and currentTime > detectedTime + threshold:
+        numGreen += 1
+    else:
+        numGreen = 0
     
-
-
-
-
-
-
-
-    #     # Black
-    # if right < 40:
-    #     # Turn Left
-    #     rightMotor.run_forever(speed_sp=-150)
-    #     leftMotor.run_forever(speed_sp=150)
-
-    # elif right > 50:
-    #     # Turn Right
-    #     rightMotor.run_forever(speed_sp=0)
-    #     leftMotor.run_forever(speed_sp=-160)
-    # else:
-    #     # Go Forward with left bias
-    #     rightMotor.run_forever(speed_sp=-175)
-    #     leftMotor.run_forever(speed_sp=80)
+    if numGreen == 10:
+        Sound.beep()
+        detectedTime = currentTime
     
-    # # Black
-    # if right < 40:
-    #     # Turn Left
-    #     rightMotor.run_forever(speed_sp=350)
-    #     leftMotor.run_forever(speed_sp=-40)
+    prevColor = colorVal
 
-    # elif right > 50:
-    #     # Turn Right
-    #     rightMotor.run_forever(speed_sp=0)
-    #     leftMotor.run_forever(speed_sp=160)
-    # else:
-    #     # Go Forward with left bias
-    #     rightMotor.run_forever(speed_sp=175)
-    #     leftMotor.run_forever(speed_sp=-80)
+    rightMotor.run_forever(speed_sp=-rightMotorVal)
+    leftMotor.run_forever(speed_sp=-leftMotorVal)
