@@ -60,3 +60,5 @@ while line:
     leftMotor.run_forever(speed_sp=-leftMotorVal)
 
 
+leftMotor.run_forever(speed_sp=0)
+rightMotor.run_forever(speed_sp=0)
