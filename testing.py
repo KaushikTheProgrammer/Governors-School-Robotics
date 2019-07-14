@@ -71,51 +71,54 @@ while line:
     # rightMotor.run_forever(speed_sp=-rightMotorVal)
     # leftMotor.run_forever(speed_sp=-leftMotorVal)
 
-# At the start of the house
-while ultrasonicSensor.distance_centimeters > 3:
-    rightMotor.run_forever(speed_sp=-200)
-    leftMotor.run_forever(speed_sp=-200)
-
-# Stop in front of the first wall
-rightMotor.stop(stop_action='brake')
-leftMotor.stop(stop_action='brake')
-
-turnRight()
-
-# Get the left end of the wall
-while ultrasonicSensor.distance_centimeters > 3:
-    rightMotor.run_forever(speed_sp=-200)
-    leftMotor.run_forever(speed_sp=-200)
-
-# Stop in front of the first wall
-rightMotor.stop(stop_action='brake')
-leftMotor.stop(stop_action='brake')
-
 turnLeft()
+# turnRight()
 
-# A ball exists in this hallway
-if ballfinder.value() != 0:
-    leftMotor.run_to_rel_pos(position_sp=1020, speed_sp=200, stop_action='hold')
-    rightMotor.run_to_rel_pos(position_sp=1020, speed_sp=200, stop_action='hold')
-# A ball doesn't exist in this hallway
-else:
-    turnLeft()
-    # Go to left end of the track
-    while ultrasonicSensor.distance_centimeters > 7:
-        rightMotor.run_forever(speed_sp=-200)
-        leftMotor.run_forever(speed_sp=-200)
-    # Stop in front of the left wall
-    rightMotor.stop(stop_action='brake')
-    leftMotor.stop(stop_action='brake')
+# # At the start of the house
+# while ultrasonicSensor.distance_centimeters > 3:
+#     rightMotor.run_forever(speed_sp=-200)
+#     leftMotor.run_forever(speed_sp=-200)
+
+# # Stop in front of the first wall
+# rightMotor.stop(stop_action='brake')
+# leftMotor.stop(stop_action='brake')
+
+# turnRight()
+
+# # Get the left end of the wall
+# while ultrasonicSensor.distance_centimeters > 3:
+#     rightMotor.run_forever(speed_sp=-200)
+#     leftMotor.run_forever(speed_sp=-200)
+
+# # Stop in front of the first wall
+# rightMotor.stop(stop_action='brake')
+# leftMotor.stop(stop_action='brake')
+
+# turnLeft()
+
+# # A ball exists in this hallway
+# if ballfinder.value() != 0:
+#     leftMotor.run_to_rel_pos(position_sp=1020, speed_sp=200, stop_action='hold')
+#     rightMotor.run_to_rel_pos(position_sp=1020, speed_sp=200, stop_action='hold')
+# # A ball doesn't exist in this hallway
+# else:
+#     turnLeft()
+#     # Go to left end of the track
+#     while ultrasonicSensor.distance_centimeters > 7:
+#         rightMotor.run_forever(speed_sp=-200)
+#         leftMotor.run_forever(speed_sp=-200)
+#     # Stop in front of the left wall
+#     rightMotor.stop(stop_action='brake')
+#     leftMotor.stop(stop_action='brake')
     
-    turnRight()
+#     turnRight()
 
-    # A ball exists in this hallway
-    if ballfinder.value() != 0:
-        leftMotor.run_to_rel_pos(position_sp=30, speed_sp=200, stop_action='hold')
-        rightMotor.run_to_rel_pos(position_sp=30, speed_sp=200, stop_action='hold')
-    else:
-        turnRight()
+#     # A ball exists in this hallway
+#     if ballfinder.value() != 0:
+#         leftMotor.run_to_rel_pos(position_sp=30, speed_sp=200, stop_action='hold')
+#         rightMotor.run_to_rel_pos(position_sp=30, speed_sp=200, stop_action='hold')
+#     else:
+#         turnRight()
 
 
 
