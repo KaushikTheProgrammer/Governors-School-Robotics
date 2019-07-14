@@ -117,13 +117,18 @@ rotateLeft()
 
 # A ball exists in this hallway
 if ballfinder.value() >= 3 and ballfinder.value() <= 6:
-    leftMotor.run_to_rel_pos(position_sp=360, speed_sp=-200, stop_action='hold')
+    leftMotor.run_to_rel_pos(position_sp=-360, speed_sp=200, stop_action='hold')
     rightMotor.run_to_rel_pos(
-        position_sp=360, speed_sp=-200, stop_action='hold')
+        position_sp=-360, speed_sp=200, stop_action='hold')
     Sound.beep()
 # A ball doesn't exist in this hallway
 else:
     rotateLeft()
+    #rightMotor.run_to_rel_pos(position_sp=5, speed_sp=200, stop_action='hold')
+    #leftMotor.run_to_rel_pos(position_sp=-5, speed_sp=200, stop_action='hold')
+    #rightMotor.wait_until_not_moving()
+    #leftMotor.wait_until_not_moving()
+    
     print("going to left end")
     # Go to left end of the track
     while ultrasonicSensor.distance_centimeters > 3:
@@ -137,22 +142,26 @@ else:
 
     # A ball exists in this hallway
     if ballfinder.value() >= 3 and ballfinder.value() <= 6:
+        leftMotor.run_to_rel_pos(position_sp=7, speed_sp=200, stop_action='hold')
+        rightMotor.run_to_rel_pos(position_sp=-7, speed_sp=200, stop_action='hold')
+        leftMotor.wait_until_not_moving()
+        rightMotor.wait_until_not_moving()
         leftMotor.run_to_rel_pos(
-            position_sp=360, speed_sp=-200, stop_action='hold')
+            position_sp=-1400, speed_sp=200, stop_action='hold')
         rightMotor.run_to_rel_pos(
-            position_sp=360, speed_sp=-200, stop_action='hold')
+            position_sp=-1400, speed_sp=200, stop_action='hold')
         Sound.beep()
     else:
         rotateRight()
         print("at the annoying turn")
         leftMotor.run_to_rel_pos(
-            position_sp=360, speed_sp=200, stop_action='hold')
+            position_sp=-540, speed_sp=200, stop_action='hold')
         rightMotor.run_to_rel_pos(
-            position_sp=360, speed_sp=200, stop_action='hold')
+            position_sp=-540, speed_sp=200, stop_action='hold')
         
         rightMotor.wait_until_not_moving()
         leftMotor.wait_until_not_moving()
-        
+       
         rotateLeft()
 
         # Go to end of the inside box
