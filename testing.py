@@ -21,14 +21,15 @@ kP = 23
 
 prevColor = 6
 numGreen = 0
+numRed = 0
 detectedTime = 0
 threshold = 10
+
 
 while True:
     lightOutput = centerLight.reflected_light_intensity
     colorVal = detector.color
-    currentTime = time.time()
-    
+    currentTime = time.time() 
     
     error = lightOutput - setpoint
     rightMotorVal = base_speed + (error * kP)
@@ -43,6 +44,18 @@ while True:
         Sound.beep()
         detectedTime = currentTime
     
+    
+    if prevColor == colorVal and colorVal == 5:
+        numRed += 1
+    else:
+        numRed = 0
+
+    if numRed == 5:
+        line = False
+
+
+
+
     prevColor = colorVal
 
     rightMotor.run_forever(speed_sp=-rightMotorVal)
