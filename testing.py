@@ -99,21 +99,19 @@ while ultrasonicSensor.distance_centimeters > 3.5:
 rightMotor.stop(stop_action='brake')
 leftMotor.stop(stop_action='brake')
 
-rotateRight()
+turnRight()
 print("first right")
 
 
-# Get the left end of the wall
+# Get the right end of the wall
 while ultrasonicSensor.distance_centimeters > 3.5:
     rightMotor.run_forever(speed_sp=-200)
     leftMotor.run_forever(speed_sp=-200)
 
-print("got to left end of the wall")
+print("got to right end of the wall")
 
-# Stop in front of the first wall
 rightMotor.stop(stop_action='brake')
 leftMotor.stop(stop_action='brake')
-print("stop in front of the first wall")
 
 turnLeft()
 
