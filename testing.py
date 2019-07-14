@@ -77,7 +77,7 @@ while line:
 
 
 # At the start of the house
-while ultrasonicSensor.distance_centimeters > 3:
+while ultrasonicSensor.distance_centimeters > 2:
     rightMotor.run_forever(speed_sp=-200)
     leftMotor.run_forever(speed_sp=-200)
 
@@ -90,7 +90,7 @@ print("first right")
 
 
 # Get the left end of the wall
-while ultrasonicSensor.distance_centimeters > 3:
+while ultrasonicSensor.distance_centimeters > 2:
     rightMotor.run_forever(speed_sp=-200)
     leftMotor.run_forever(speed_sp=-200)
 
@@ -111,7 +111,7 @@ if ballfinder.value() != 0:
 else:
     turnLeft()
     # Go to left end of the track
-    while ultrasonicSensor.distance_centimeters > 3:
+    while ultrasonicSensor.distance_centimeters > 2:
         rightMotor.run_forever(speed_sp=-200)
         leftMotor.run_forever(speed_sp=-200)
     # Stop in front of the left wall
