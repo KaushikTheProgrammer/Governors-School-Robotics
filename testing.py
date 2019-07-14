@@ -68,8 +68,8 @@ while line:
 
     prevColor = colorVal
 
-    # rightMotor.run_forever(speed_sp=-rightMotorVal)
-    # leftMotor.run_forever(speed_sp=-leftMotorVal)
+    rightMotor.run_forever(speed_sp=-rightMotorVal)
+    leftMotor.run_forever(speed_sp=-leftMotorVal)
 
 # At the start of the house
 while ultrasonicSensor.distance_centimeters > 3:
