@@ -11,8 +11,8 @@ detector.mode = 'COL-COLOR'
 ballfinder = Sensor(address='in2:i2c8', driver_name='ht-nxt-ir-seek-v2')
 ballfinder.mode = 'AC'
 
-# ultrasonicSensor = UltrasonicSensor('in3')
-# ultrasonicSensor.mode = 'US-DIST-CM'
+ultrasonicSensor = UltrasonicSensor('in3')
+ultrasonicSensor.mode = 'US-DIST-CM'
 
 rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
@@ -32,8 +32,12 @@ line = False
 
 
 def turnLeft():
-    
+    leftMotor.run_to_rel_pos(position_sp=770, speed_sp=200, stop_action='hold')
+    rightMotor.run_to_rel_pos(position_sp=-770, speed_sp=200, stop_action='hold')
 
+def turnRight():
+    leftMotor.run_to_rel_pos(position_sp=-770, speed_sp=200, stop_action='hold')
+    rightMotor.run_to_rel_pos(position_sp=770, speed_sp=200, stop_action='hold')
 
 while line:
     lightOutput = centerLight.reflected_light_intensity
@@ -66,7 +70,5 @@ while line:
     # rightMotor.run_forever(speed_sp=-rightMotorVal)
     # leftMotor.run_forever(speed_sp=-leftMotorVal)
 
-leftMotor.run_to_rel_pos(position_sp=770, speed_sp=200, stop_action='hold')
-
-rightMotor.run_to_rel_pos(position_sp=-770, speed_sp=200, stop_action='hold')
+print(ultrasonicSensor.distance_centimeters)
 # ballfinder.value()
