@@ -25,8 +25,10 @@ numRed = 0
 detectedTime = 0
 threshold = 10
 
+line = True
 
-while True:
+
+while line:
     lightOutput = centerLight.reflected_light_intensity
     colorVal = detector.color
     currentTime = time.time() 
@@ -44,7 +46,6 @@ while True:
         Sound.beep()
         detectedTime = currentTime
     
-    
     if prevColor == colorVal and colorVal == 5:
         numRed += 1
     else:
@@ -53,10 +54,9 @@ while True:
     if numRed == 5:
         line = False
 
-
-
-
     prevColor = colorVal
 
     rightMotor.run_forever(speed_sp=-rightMotorVal)
     leftMotor.run_forever(speed_sp=-leftMotorVal)
+
+
