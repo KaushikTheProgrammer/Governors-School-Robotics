@@ -33,12 +33,12 @@ ballFound = False
 
 
 def turnLeft():
-    leftMotor.run_to_rel_pos(position_sp=770, speed_sp=200, stop_action='hold')
-    rightMotor.run_to_rel_pos(position_sp=-770, speed_sp=200, stop_action='hold')
+    leftMotor.run_to_rel_pos(position_sp=385, speed_sp=200, stop_action='hold')
+    rightMotor.run_to_rel_pos(position_sp=-385, speed_sp=200, stop_action='hold')
 
 def turnRight():
-    leftMotor.run_to_rel_pos(position_sp=-770, speed_sp=200, stop_action='hold')
-    rightMotor.run_to_rel_pos(position_sp=770, speed_sp=200, stop_action='hold')
+    leftMotor.run_to_rel_pos(position_sp=-385, speed_sp=200, stop_action='hold')
+    rightMotor.run_to_rel_pos(position_sp=385, speed_sp=200, stop_action='hold')
 
 while line:
     lightOutput = centerLight.reflected_light_intensity
@@ -72,7 +72,7 @@ while line:
     # leftMotor.run_forever(speed_sp=-leftMotorVal)
 
 # At the start of the house
-while ultrasonicSensor.distance_centimeters > 7:
+while ultrasonicSensor.distance_centimeters > 3:
     rightMotor.run_forever(speed_sp=-200)
     leftMotor.run_forever(speed_sp=-200)
 
@@ -83,7 +83,7 @@ leftMotor.stop(stop_action='brake')
 turnRight()
 
 # Get the left end of the wall
-while ultrasonicSensor.distance_centimeters > 7:
+while ultrasonicSensor.distance_centimeters > 3:
     rightMotor.run_forever(speed_sp=-200)
     leftMotor.run_forever(speed_sp=-200)
 
@@ -95,8 +95,8 @@ turnLeft()
 
 # A ball exists in this hallway
 if ballfinder.value() != 0:
-    leftMotor.run_to_rel_pos(position_sp=30, speed_sp=200, stop_action='hold')
-    rightMotor.run_to_rel_pos(position_sp=30, speed_sp=200, stop_action='hold')
+    leftMotor.run_to_rel_pos(position_sp=1020, speed_sp=200, stop_action='hold')
+    rightMotor.run_to_rel_pos(position_sp=1020, speed_sp=200, stop_action='hold')
 # A ball doesn't exist in this hallway
 else:
     turnLeft()
