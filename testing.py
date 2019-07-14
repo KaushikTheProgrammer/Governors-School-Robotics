@@ -69,6 +69,6 @@ while line:
 
     # rightMotor.run_forever(speed_sp=-rightMotorVal)
     # leftMotor.run_forever(speed_sp=-leftMotorVal)
-
-print(ultrasonicSensor.distance_centimeters)
+while True:
+    print(ultrasonicSensor.distance_centimeters)
 # ballfinder.value()
