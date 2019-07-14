@@ -124,6 +124,7 @@ if ballfinder.value() != 0:
 # A ball doesn't exist in this hallway
 else:
     turnLeft()
+    print("going to left end")
     # Go to left end of the track
     while ultrasonicSensor.distance_centimeters > 3.5:
         rightMotor.run_forever(speed_sp=-200)
