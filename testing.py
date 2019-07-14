@@ -47,12 +47,12 @@ def rotateRight():
 
 def turnLeft():
     leftMotor.run_to_rel_pos(position_sp=0, speed_sp=200, stop_action='hold')
-    rightMotor.run_to_rel_pos(position_sp=-754, speed_sp=200, stop_action='hold')
+    rightMotor.run_to_rel_pos(position_sp=-745, speed_sp=200, stop_action='hold')
     rightMotor.wait_until_not_moving()
     leftMotor.wait_until_not_moving()
 
 def turnRight():
-    leftMotor.run_to_rel_pos(position_sp=-754, speed_sp=200, stop_action='hold')
+    leftMotor.run_to_rel_pos(position_sp=-745, speed_sp=200, stop_action='hold')
     rightMotor.run_to_rel_pos(position_sp=0, speed_sp=200, stop_action='hold')
     rightMotor.wait_until_not_moving()
     leftMotor.wait_until_not_moving()
