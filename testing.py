@@ -33,16 +33,17 @@ ballFound = False
 
 
 def turnLeft():
-    leftMotor.run_to_rel_pos(position_sp=380, speed_sp=200, stop_action='hold')
-    rightMotor.run_to_rel_pos(position_sp=-380, speed_sp=200, stop_action='hold')
+    leftMotor.run_to_rel_pos(position_sp=377, speed_sp=200, stop_action='hold')
+    rightMotor.run_to_rel_pos(position_sp=-377, speed_sp=200, stop_action='hold')
     rightMotor.wait_until_not_moving()
     leftMotor.wait_until_not_moving()
 
 def turnRight():
-    leftMotor.run_to_rel_pos(position_sp=-380, speed_sp=200, stop_action='hold')
-    rightMotor.run_to_rel_pos(position_sp=380, speed_sp=200, stop_action='hold')
+    leftMotor.run_to_rel_pos(position_sp=-377, speed_sp=200, stop_action='hold')
+    rightMotor.run_to_rel_pos(position_sp=377, speed_sp=200, stop_action='hold')
     rightMotor.wait_until_not_moving()
     leftMotor.wait_until_not_moving()
+
 while line:
     lightOutput = centerLight.reflected_light_intensity
     colorVal = detector.color
@@ -110,7 +111,7 @@ if ballfinder.value() != 0:
 else:
     turnLeft()
     # Go to left end of the track
-    while ultrasonicSensor.distance_centimeters > 7:
+    while ultrasonicSensor.distance_centimeters > 3:
         rightMotor.run_forever(speed_sp=-200)
         leftMotor.run_forever(speed_sp=-200)
     # Stop in front of the left wall
