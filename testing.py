@@ -121,6 +121,8 @@ if ballfinder.value() >= 3 and ballfinder.value() <= 6:
     while ultrasonicSensor.distance_centimeters > 3:
         rightMotor.run_forever(speed_sp=-200)
         leftMotor.run_forever(speed_sp=-200)
+    rightMotor.stop(stop_action='brake')
+    leftMotor.stop(stop_action='brake')
 # A ball doesn't exist in this hallway
 else:
     rotateLeft()
