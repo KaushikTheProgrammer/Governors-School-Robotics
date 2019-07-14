@@ -139,10 +139,11 @@ else:
     rightMotor.stop(stop_action='brake')
     leftMotor.stop(stop_action='brake')
 
-    leftMotor.run_to_rel_pos(position_sp=-760, speed_sp=200, stop_action='hold')
-    rightMotor.run_to_rel_pos(position_sp=0, speed_sp=200, stop_action='hold')
-    rightMotor.wait_until_not_moving()
-    leftMotor.wait_until_not_moving()
+    while not(ballfinder.value() >= 3 and ballfinder.value() <= 6):
+        leftMotor.run_to_rel_pos(position_sp=-3, speed_sp=200, stop_action='hold')
+        rightMotor.run_to_rel_pos(position_sp=0, speed_sp=200, stop_action='hold')
+        rightMotor.wait_until_not_moving()
+        leftMotor.wait_until_not_moving()
 
     # A ball exists in this hallway
     if ballfinder.value() >= 3 and ballfinder.value() <= 6:
@@ -151,23 +152,23 @@ else:
         rightMotor.run_to_rel_pos(
             position_sp=-1400, speed_sp=200, stop_action='hold')
         Sound.beep()
-    else:
-        rotateRight()
-        leftMotor.run_to_rel_pos(
-            position_sp=-540, speed_sp=200, stop_action='hold')
-        rightMotor.run_to_rel_pos(
-            position_sp=-540, speed_sp=200, stop_action='hold')
+    # else:
+    #     rotateRight()
+    #     leftMotor.run_to_rel_pos(
+    #         position_sp=-540, speed_sp=200, stop_action='hold')
+    #     rightMotor.run_to_rel_pos(
+    #         position_sp=-540, speed_sp=200, stop_action='hold')
         
-        rightMotor.wait_until_not_moving()
-        leftMotor.wait_until_not_moving()
+    #     rightMotor.wait_until_not_moving()
+    #     leftMotor.wait_until_not_moving()
        
-        rotateLeft()
+    #     rotateLeft()
 
-        # Go to end of the inside box
-        while ultrasonicSensor.distance_centimeters > 3:
-            rightMotor.run_forever(speed_sp=-200)
-            leftMotor.run_forever(speed_sp=-200)
+    #     # Go to end of the inside box
+    #     while ultrasonicSensor.distance_centimeters > 3:
+    #         rightMotor.run_forever(speed_sp=-200)
+    #         leftMotor.run_forever(speed_sp=-200)
 
-        rotateRight()
-        if ballfinder.value() != 0:
-            Sound.beep()
+    #     rotateRight()
+    #     if ballfinder.value() != 0:
+    #         Sound.beep()
