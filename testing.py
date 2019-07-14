@@ -24,7 +24,8 @@ setpoint = 40
 
 kP = 23
 
-prevColor = 6
+prevGreen = 120
+prevRed = 160
 numGreen = 0
 numRed = 0
 detectedTime = 0
@@ -64,14 +65,15 @@ while not startButton.any():
 
 while line:
     lightOutput = centerLight.reflected_light_intensity
-    colorVal = detector.c
+    redVal = detector.value(0)
+    greenVal = detector.value(1)
     currentTime = time.time()
 
     error = lightOutput - setpoint
     rightMotorVal = base_speed + (error * kP)
     leftMotorVal = base_speed - (error * kP)
 
-    if prevColor == colorVal and colorVal == 4 and currentTime > detectedTime + threshold:
+    if (prevGreen == (greenVal + 1) or prevGreen == (greenVal - 1)) and (greenVal >= 17 and greenVal <= 19) and currentTime > detectedTime + threshold:
         numGreen += 1
     else:
         numGreen = 0
@@ -80,7 +82,7 @@ while line:
         Sound.beep()
         detectedTime = currentTime
 
-    if prevColor == colorVal and colorVal == 5:
+    if (prevRed <= redVal + 20 and prevRed >= redVal - 20) and (redVal >= 100 and redVal <= 140):
         numRed += 1
     else:
         numRed = 0
@@ -88,7 +90,8 @@ while line:
     if numRed == 5:
         line = False
 
-    prevColor = colorVal
+    prevGreen = greenVal
+    prevRed = redVal
 
     rightMotor.run_forever(speed_sp=-rightMotorVal)
     leftMotor.run_forever(speed_sp=-leftMotorVal)
