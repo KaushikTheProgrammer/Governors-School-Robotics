@@ -6,7 +6,7 @@ centerLight = LightSensor('in4')
 #centerLight.mode = 'COL-REFLECT'
 
 detector = ColorSensor()
-detector.mode = 'COL-COLOR'
+detector.mode = 'RGB-RAW'
 
 ballfinder = Sensor(address='in2:i2c8', driver_name='ht-nxt-ir-seek-v2')
 ballfinder.mode = 'AC'
@@ -16,6 +16,8 @@ ultrasonicSensor.mode = 'US-DIST-CM'
 
 rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
+
+startButton = Button()
 
 base_speed = 120
 setpoint = 40
@@ -28,9 +30,7 @@ numRed = 0
 detectedTime = 0
 threshold = 10
 
-line = False
-ballFound = False
-
+line = True
 
 def rotateLeft():
     leftMotor.run_to_rel_pos(position_sp=377, speed_sp=200, stop_action='hold')
@@ -58,16 +58,20 @@ def turnRight():
     leftMotor.wait_until_not_moving()
 
 
+print('waiting for start')
+while not startButton.any():
+    continue
+
 while line:
     lightOutput = centerLight.reflected_light_intensity
-    colorVal = detector.color
+    colorVal = detector.c
     currentTime = time.time()
 
     error = lightOutput - setpoint
     rightMotorVal = base_speed + (error * kP)
     leftMotorVal = base_speed - (error * kP)
 
-    if prevColor == colorVal and (colorVal == 3 or colorVal == 4) and currentTime > detectedTime + threshold:
+    if prevColor == colorVal and colorVal == 4 and currentTime > detectedTime + threshold:
         numGreen += 1
     else:
         numGreen = 0
