@@ -78,6 +78,7 @@ while line:
 
 # At the start of the house
 while ultrasonicSensor.distance_centimeters > 2:
+    print(ultrasonicSensor.distance_centimeters)
     rightMotor.run_forever(speed_sp=-200)
     leftMotor.run_forever(speed_sp=-200)
 
