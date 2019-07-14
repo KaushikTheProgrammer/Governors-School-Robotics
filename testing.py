@@ -150,6 +150,8 @@ else:
         while ultrasonicSensor.distance_centimeters > 3:
             rightMotor.run_forever(speed_sp=-200)
             leftMotor.run_forever(speed_sp=-200)
+        rightMotor.stop(stop_action='brake')
+        leftMotor.stop(stop_action='brake')
     # else:
     #     rotateRight()
     #     leftMotor.run_to_rel_pos(
