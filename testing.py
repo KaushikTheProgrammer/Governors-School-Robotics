@@ -73,14 +73,14 @@ while line:
     rightMotorVal = base_speed + (error * kP)
     leftMotorVal = base_speed - (error * kP)
 
-    if (prevGreen == (greenVal + 1) or prevGreen == (greenVal - 1)) and (greenVal >= 17 and greenVal <= 19) and currentTime > detectedTime + threshold:
-        numGreen += 1
-    else:
-        numGreen = 0
+    # if (prevGreen == (greenVal + 1) or prevGreen == (greenVal - 1)) and (greenVal >= 17 and greenVal <= 19) and currentTime > detectedTime + threshold:
+    #     numGreen += 1
+    # else:
+    #     numGreen = 0
 
-    if numGreen == 10:
-        Sound.beep()
-        detectedTime = currentTime
+    # if numGreen == 10:
+    #     Sound.beep()
+    #     detectedTime = currentTime
 
     if (prevRed <= redVal + 20 and prevRed >= redVal - 20) and (redVal >= 100 and redVal <= 140):
         numRed += 1
