@@ -28,9 +28,11 @@ numRed = 0
 detectedTime = 0
 threshold = 10
 
-line = True
+line = False
 
-print(leftMotor.count_per_rot)
+
+def turnLeft():
+    
 
 
 while line:
@@ -64,6 +66,7 @@ while line:
     # rightMotor.run_forever(speed_sp=-rightMotorVal)
     # leftMotor.run_forever(speed_sp=-leftMotorVal)
 
-# leftMotor.run_to_rel_pos(position_sp=360, speed_sp=200, stop_action='hold')
+leftMotor.run_to_rel_pos(position_sp=770, speed_sp=200, stop_action='hold')
 
+rightMotor.run_to_rel_pos(position_sp=-770, speed_sp=200, stop_action='hold')
 # ballfinder.value()
