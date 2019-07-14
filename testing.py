@@ -8,6 +8,9 @@ centerLight = LightSensor('in4')
 detector = ColorSensor()
 detector.mode = 'COL-COLOR'
 
+ballfinder = Sensor(address='in2:i2c8', driver_name='ht-nxt-ir-seek-v2')
+ballfinder.mode = 'AC'
+
 # ultrasonicSensor = UltrasonicSensor('in3')
 # ultrasonicSensor.mode = 'US-DIST-CM'
 
@@ -26,6 +29,8 @@ detectedTime = 0
 threshold = 10
 
 line = True
+
+print(leftMotor.count_per_rot)
 
 
 while line:
@@ -56,9 +61,9 @@ while line:
 
     prevColor = colorVal
 
-    rightMotor.run_forever(speed_sp=-rightMotorVal)
-    leftMotor.run_forever(speed_sp=-leftMotorVal)
+    # rightMotor.run_forever(speed_sp=-rightMotorVal)
+    # leftMotor.run_forever(speed_sp=-leftMotorVal)
 
+# leftMotor.run_to_rel_pos(position_sp=360, speed_sp=200, stop_action='hold')
 
-leftMotor.run_forever(speed_sp=0)
-rightMotor.run_forever(speed_sp=0)
+# ballfinder.value()
