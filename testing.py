@@ -77,8 +77,8 @@ while ultrasonicSensor.distance_centimeters > 7:
     leftMotor.run_forever(speed_sp=-200)
 
 # Stop in front of the first wall
-rightMotor.stop(stop_action='break')
-leftMotor.stop(stop_action='break')
+rightMotor.stop(stop_action='brake')
+leftMotor.stop(stop_action='brake')
 
 turnRight()
 
@@ -88,8 +88,8 @@ while ultrasonicSensor.distance_centimeters > 7:
     leftMotor.run_forever(speed_sp=-200)
 
 # Stop in front of the first wall
-rightMotor.stop(stop_action='break')
-leftMotor.stop(stop_action='break')
+rightMotor.stop(stop_action='brake')
+leftMotor.stop(stop_action='brake')
 
 turnLeft()
 
@@ -105,8 +105,8 @@ else:
         rightMotor.run_forever(speed_sp=-200)
         leftMotor.run_forever(speed_sp=-200)
     # Stop in front of the left wall
-    rightMotor.stop(stop_action='break')
-    leftMotor.stop(stop_action='break')
+    rightMotor.stop(stop_action='brake')
+    leftMotor.stop(stop_action='brake')
     
     turnRight()
 
