@@ -147,11 +147,10 @@ else:
 
     # A ball exists in this hallway
     if ballfinder.value() >= 3 and ballfinder.value() <= 6:
-        leftMotor.run_to_rel_pos(
-            position_sp=-1400, speed_sp=200, stop_action='hold')
-        rightMotor.run_to_rel_pos(
-            position_sp=-1400, speed_sp=200, stop_action='hold')
         Sound.beep()
+        while ultrasonicSensor.distance_centimeters > 3:
+            rightMotor.run_forever(speed_sp=-200)
+            leftMotor.run_forever(speed_sp=-200)
     # else:
     #     rotateRight()
     #     leftMotor.run_to_rel_pos(
