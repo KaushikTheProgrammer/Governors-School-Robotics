@@ -6,7 +6,7 @@ centerLight = LightSensor('in4')
 #centerLight.mode = 'COL-REFLECT'
 
 detector = ColorSensor()
-detector.mode = 'RGB-RAW'
+detector.mode = 'COL-COLOR'
 
 ballfinder = Sensor(address='in2:i2c8', driver_name='ht-nxt-ir-seek-v2')
 ballfinder.mode = 'AC'
@@ -17,21 +17,20 @@ ultrasonicSensor.mode = 'US-DIST-CM'
 rightMotor = LargeMotor('outD')
 leftMotor = LargeMotor('outA')
 
-startButton = Button()
-
 base_speed = 120
 setpoint = 40
 
 kP = 23
 
-prevGreen = 120
-prevRed = 160
+prevColor = 6
 numGreen = 0
 numRed = 0
 detectedTime = 0
 threshold = 10
 
-line = True
+line = False
+ballFound = False
+
 
 def rotateLeft():
     leftMotor.run_to_rel_pos(position_sp=377, speed_sp=200, stop_action='hold')
@@ -59,21 +58,16 @@ def turnRight():
     leftMotor.wait_until_not_moving()
 
 
-print('waiting for start')
-while not startButton.any():
-    continue
-
 while line:
     lightOutput = centerLight.reflected_light_intensity
-    redVal = detector.value(0)
-    greenVal = detector.value(1)
+    colorVal = detector.color
     currentTime = time.time()
 
     error = lightOutput - setpoint
     rightMotorVal = base_speed + (error * kP)
     leftMotorVal = base_speed - (error * kP)
 
-    if (prevGreen == (greenVal + 1) or prevGreen == (greenVal - 1)) and (greenVal >= 17 and greenVal <= 19) and currentTime > detectedTime + threshold:
+    if prevColor == colorVal and (colorVal == 3 or colorVal == 4) and currentTime > detectedTime + threshold:
         numGreen += 1
     else:
         numGreen = 0
@@ -82,16 +76,15 @@ while line:
         Sound.beep()
         detectedTime = currentTime
 
-    if (prevRed <= redVal + 20 and prevRed >= redVal - 20) and (redVal >= 100 and redVal <= 140):
+    if prevColor == colorVal and colorVal == 5:
         numRed += 1
     else:
         numRed = 0
 
-    if numRed == 15:
+    if numRed == 5:
         line = False
 
-    prevGreen = greenVal
-    prevRed = redVal
+    prevColor = colorVal
 
     rightMotor.run_forever(speed_sp=-rightMotorVal)
     leftMotor.run_forever(speed_sp=-leftMotorVal)
@@ -124,12 +117,10 @@ rotateLeft()
 
 # A ball exists in this hallway
 if ballfinder.value() >= 3 and ballfinder.value() <= 6:
+    leftMotor.run_to_rel_pos(position_sp=-360, speed_sp=200, stop_action='hold')
+    rightMotor.run_to_rel_pos(
+        position_sp=-360, speed_sp=200, stop_action='hold')
     Sound.beep()
-    while ultrasonicSensor.distance_centimeters > 3:
-        rightMotor.run_forever(speed_sp=-200)
-        leftMotor.run_forever(speed_sp=-200)
-    rightMotor.stop(stop_action='brake')
-    leftMotor.stop(stop_action='brake')
 # A ball doesn't exist in this hallway
 else:
     rotateLeft()
@@ -147,37 +138,37 @@ else:
     rightMotor.stop(stop_action='brake')
     leftMotor.stop(stop_action='brake')
 
-    while not(ballfinder.value() >= 3 and ballfinder.value() <= 6):
-        leftMotor.run_to_rel_pos(position_sp=-15, speed_sp=200, stop_action='hold')
-        rightMotor.run_to_rel_pos(position_sp=0, speed_sp=200, stop_action='hold')
-        # rightMotor.wait_until_not_moving()
-        # leftMotor.wait_until_not_moving()
+    rotateRight()
 
     # A ball exists in this hallway
     if ballfinder.value() >= 3 and ballfinder.value() <= 6:
+        leftMotor.run_to_rel_pos(position_sp=7, speed_sp=200, stop_action='hold')
+        rightMotor.run_to_rel_pos(position_sp=-7, speed_sp=200, stop_action='hold')
+        leftMotor.wait_until_not_moving()
+        rightMotor.wait_until_not_moving()
+        leftMotor.run_to_rel_pos(
+            position_sp=-1400, speed_sp=200, stop_action='hold')
+        rightMotor.run_to_rel_pos(
+            position_sp=-1400, speed_sp=200, stop_action='hold')
         Sound.beep()
+    else:
+        rotateRight()
+        print("at the annoying turn")
+        leftMotor.run_to_rel_pos(
+            position_sp=-540, speed_sp=200, stop_action='hold')
+        rightMotor.run_to_rel_pos(
+            position_sp=-540, speed_sp=200, stop_action='hold')
+        
+        rightMotor.wait_until_not_moving()
+        leftMotor.wait_until_not_moving()
+       
+        rotateLeft()
+
+        # Go to end of the inside box
         while ultrasonicSensor.distance_centimeters > 3:
             rightMotor.run_forever(speed_sp=-200)
             leftMotor.run_forever(speed_sp=-200)
-        rightMotor.stop(stop_action='brake')
-        leftMotor.stop(stop_action='brake')
-    # else:
-    #     rotateRight()
-    #     leftMotor.run_to_rel_pos(
-    #         position_sp=-540, speed_sp=200, stop_action='hold')
-    #     rightMotor.run_to_rel_pos(
-    #         position_sp=-540, speed_sp=200, stop_action='hold')
-        
-    #     rightMotor.wait_until_not_moving()
-    #     leftMotor.wait_until_not_moving()
-       
-    #     rotateLeft()
 
-    #     # Go to end of the inside box
-    #     while ultrasonicSensor.distance_centimeters > 3:
-    #         rightMotor.run_forever(speed_sp=-200)
-    #         leftMotor.run_forever(speed_sp=-200)
-
-    #     rotateRight()
-    #     if ballfinder.value() != 0:
-    #         Sound.beep()
+        rotateRight()
+        if ballfinder.value() != 0:
+            Sound.beep()
