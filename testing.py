@@ -105,8 +105,9 @@ turnLeft()
 
 # A ball exists in this hallway
 if ballfinder.value() != 0:
-    leftMotor.run_to_rel_pos(position_sp=1020, speed_sp=200, stop_action='hold')
-    rightMotor.run_to_rel_pos(position_sp=1020, speed_sp=200, stop_action='hold')
+    leftMotor.run_to_rel_pos(position_sp=360, speed_sp=200, stop_action='hold')
+    rightMotor.run_to_rel_pos(position_sp=360, speed_sp=200, stop_action='hold')
+    Sound.beep()
 # A ball doesn't exist in this hallway
 else:
     turnLeft()
@@ -122,10 +123,25 @@ else:
 
     # A ball exists in this hallway
     if ballfinder.value() != 0:
-        leftMotor.run_to_rel_pos(position_sp=30, speed_sp=200, stop_action='hold')
-        rightMotor.run_to_rel_pos(position_sp=30, speed_sp=200, stop_action='hold')
+        leftMotor.run_to_rel_pos(position_sp=360, speed_sp=200, stop_action='hold')
+        rightMotor.run_to_rel_pos(position_sp=360, speed_sp=200, stop_action='hold')
+        Sound.beep()
     else:
         turnRight()
+        leftMotor.run_to_rel_pos(position_sp=360, speed_sp=200, stop_action='hold')
+        rightMotor.run_to_rel_pos(position_sp=360, speed_sp=200, stop_action='hold')
+        turnLeft()
+        
+        # Go to end of the inside box
+        while ultrasonicSensor.distance_centimeters > 2:
+            rightMotor.run_forever(speed_sp=-200)
+            leftMotor.run_forever(speed_sp=-200)
+        
+        turnRight()
+        if ballfinder.value() != 0:
+            Sound.beep()
+
+
 
 
 
