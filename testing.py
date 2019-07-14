@@ -87,7 +87,7 @@ while line:
     else:
         numRed = 0
 
-    if numRed == 5:
+    if numRed == 15:
         line = False
 
     prevGreen = greenVal
