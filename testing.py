@@ -35,11 +35,14 @@ ballFound = False
 def turnLeft():
     leftMotor.run_to_rel_pos(position_sp=385, speed_sp=200, stop_action='hold')
     rightMotor.run_to_rel_pos(position_sp=-385, speed_sp=200, stop_action='hold')
+    rightMotor.wait_until_not_moving()
+    leftMotor.wait_until_not_moving()
 
 def turnRight():
     leftMotor.run_to_rel_pos(position_sp=-385, speed_sp=200, stop_action='hold')
     rightMotor.run_to_rel_pos(position_sp=385, speed_sp=200, stop_action='hold')
-
+    rightMotor.wait_until_not_moving()
+    leftMotor.wait_until_not_moving()
 while line:
     lightOutput = centerLight.reflected_light_intensity
     colorVal = detector.color
@@ -81,15 +84,20 @@ rightMotor.stop(stop_action='brake')
 leftMotor.stop(stop_action='brake')
 
 turnRight()
+print("first right")
+
 
 # Get the left end of the wall
 while ultrasonicSensor.distance_centimeters > 3:
     rightMotor.run_forever(speed_sp=-200)
     leftMotor.run_forever(speed_sp=-200)
 
+print("got to left end of the wall")
+
 # Stop in front of the first wall
 rightMotor.stop(stop_action='brake')
 leftMotor.stop(stop_action='brake')
+print("stop in front of the first wall")
 
 turnLeft()
 
