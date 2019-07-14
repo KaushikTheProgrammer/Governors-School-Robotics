@@ -150,6 +150,9 @@ else:
         rightMotor.run_to_rel_pos(
             position_sp=360, speed_sp=200, stop_action='hold')
         
+        rightMotor.wait_until_not_moving()
+        leftMotor.wait_until_not_moving()
+        
         rotateLeft()
 
         # Go to end of the inside box
