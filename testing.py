@@ -139,7 +139,10 @@ else:
     rightMotor.stop(stop_action='brake')
     leftMotor.stop(stop_action='brake')
 
-    turnRight()
+    leftMotor.run_to_rel_pos(position_sp=-760, speed_sp=200, stop_action='hold')
+    rightMotor.run_to_rel_pos(position_sp=0, speed_sp=200, stop_action='hold')
+    rightMotor.wait_until_not_moving()
+    leftMotor.wait_until_not_moving()
 
     # A ball exists in this hallway
     if ballfinder.value() >= 3 and ballfinder.value() <= 6:
